@@ -12,7 +12,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 
-public class KinectPointController : MonoBehaviour
+public class KinectPointControllerFar : MonoBehaviour
 {
 
     //Assignments for a bitmask to control which bones to look at and which to ignore
@@ -83,7 +83,7 @@ public class KinectPointController : MonoBehaviour
 
     public float scale = 1.0f;
 
-    public GameObject camLookAtTarget;
+    public GameObject landscape;
 
     // Use this for initialization
     void Start()
@@ -133,9 +133,9 @@ public class KinectPointController : MonoBehaviour
 
                     var delta = currentPos - previousPos;
                     _bones[ii].transform.position += new Vector3(
-                        delta.x * scale * 3,
-                        delta.z * scale * 3,
-                        delta.y * scale * -5);
+                        delta.x * scale * -13,
+                        delta.z * scale * -10,
+                        delta.y * scale * 8);
 
                     previousPos = currentPos;
                     //_bones[ii].transform.position = new Vector3(
@@ -144,12 +144,16 @@ public class KinectPointController : MonoBehaviour
                     //    sw.bonePos[player, ii].z * scale * 8
                     //    );
 
-                    var pos = Camera.main.transform.position + new Vector3(0f,0.1f,0f);
-                    Debug.DrawLine(camLookAtTarget.transform.position, pos, Color.red, 0.1f,false);
-                    if (camLookAtTarget != null)
-                    {
-                        Camera.main.transform.LookAt(camLookAtTarget.transform.position);
-                    }
+
+                    //if (landscape != null)
+                    //{
+                    //    var deltaVector3 = Camera.main.transform.position + new Vector3(
+                    //        delta.x * scale * -3,
+                    //        delta.z * scale * 0,
+                    //        delta.y * scale * 0);
+                    //    landscape.transform.Translate(deltaVector3);
+                    //}
+
                 }
             }
         }
